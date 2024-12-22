@@ -1,6 +1,9 @@
 # =-=-=-=- {import space} =-=-=-=-  
+import matplotlib
 import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation
 import numpy as np
+import plotly.graph_objects as go
 
 # მონაცემები
 temp_off = [
@@ -22,15 +25,15 @@ temp = [
 ]
 
 
-time_off = np.arange(len(temp_off))  
-time_on = np.arange(len(temp_on))   
-time_all = np.arange(len(temp))    
+line_off = np.arange(len(temp_off))  
+line_on = np.arange(len(temp_on))   
+line_all = np.arange(len(temp))    
 
 # გრაფიკი
 plt.figure(figsize=(14, 7))
-plt.plot(time_off, temp_off, label="ტემპერატურა (გათიშული)", color="red", linestyle='--')
-plt.plot(time_on, temp_on, label="ტემპერატურა (ჩართული)", color="green", linestyle='-')
-plt.plot(time_all, temp, label="მიმდინარეობის ტემპერატურა", color="blue", linestyle='-.')
+plt.plot(line_off, temp_off, label="ტემპერატურა (გათიშული)", color="red", linestyle='--')
+plt.plot(line_on, temp_on, label="ტემპერატურა (ჩართული)", color="green", linestyle='-')
+plt.plot(line_all, temp, label="მიმდინარეობის ტემპერატურა", color="blue", linestyle='-.')
 
 # სეთთინგი
 plt.title("ტემპერატურის ცვალებადობის გრაფიკი", fontsize=16)
@@ -38,5 +41,48 @@ plt.xlabel("დრო (∆ წუთი)", fontsize=14)
 plt.ylabel("ტემპერატურა (°C)", fontsize=14)
 plt.grid(True, linestyle='--', alpha=0.5)
 plt.legend(fontsize=12)
-plt.show()
 
+
+# Создание интерактивного графика
+fig = go.Figure()
+
+fig.add_trace(go.Scatter(
+    x=line_off, y=temp_off,
+    mode='lines+markers',
+    name='Температура (выключено)',
+    line=dict(color='red', dash='dash'),
+    hovertemplate='Время: %{x}<br>Температура: %{y}°C'
+))
+
+fig.add_trace(go.Scatter(
+    x=line_on, y=temp_on,
+    mode='lines+markers',
+    name='Температура (включено)',
+    line=dict(color='green', dash='solid'),
+    hovertemplate='Время: %{x}<br>Температура: %{y}°C'
+))
+
+fig.add_trace(go.Scatter(
+    x=line_all, y=temp,
+    mode='lines+markers',
+    name='Общая температура',
+    line=dict(color='blue', dash='dot'),
+    hovertemplate='Время: %{x}<br>Температура: %{y}°C'
+))
+
+def init():
+    line_off.set_data([], [])
+    line_on.set_data([], [])
+    line_all.set_data([], [])
+    return line_off, line_on, line_all
+
+def update(frame):
+    line_off.set_data(line_off[:frame], temp_off[:frame])
+    line_on.set_data(line_on[:frame], temp_on[:frame])
+    line_all.set_data(line_all[:frame], temp[:frame])
+    return line_off, line_on, line_all
+
+# Анимация (по желанию)
+fig.update_traces(mode="lines+markers", marker=dict(size=8))
+
+plt.show()
