@@ -1,10 +1,10 @@
--=-=-====- - [ Abstract ] - -=-=-====-
+**-=-=-====- - [ Abstract ] - -=-=-====-**
 
 In this single file, a graph with several curves for my specific case was implemented in a standard way.
 The data was recorded, and therefore the information base, but in Python I decided to make three arrays, 
 which does not add originality and pretentiousness to the work. 
 
-=-=-=-=-=-=-=-==-=-=-=-=-==-=-=-=-=-=--=-==-=-=-
+**=-=-=-=-=-=-=-==-=-=-=-=-==-=-=-=-=-=--=-==-=-=-**
 
 A small work, consisting only of a component part, of one file, can already say a lot about the author, a lot about his incompetence, 
 but since every user of this social network*, every co-participant and participant of the phenomenon as - boarding school, 
