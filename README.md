@@ -6,6 +6,7 @@ which does not add originality and pretentiousness to the work.
 
 **=-=-=-=-=-=-=-==-=-=-=-=-==-=-=-=-=-=--=-==-=-=-**
 ENG - version 
+
 A small work, consisting only of a component part, of one file, can already say a lot about the author, a lot about his incompetence, 
 but since every user of this social network*, every co-participant and participant of the phenomenon as - boarding school, 
 has the right to authorship even the slightest, I am eager to take advantage of this opportunity. 
